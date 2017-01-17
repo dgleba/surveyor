@@ -1,0 +1,18 @@
+https://github.com/dgleba/surveyor
+2017-01-15
+2017-01-15_17.28.47-PM
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+----------------------------  2017-01-15_17.28.49-PM
+
+ cd config/
+ # copy sqlite config...
+ wget -N https://raw.githubusercontent.com/dgleba/rail263/master/config/database.yml
+ cd ..
+ bundle
+ bundle exec rake db:migrate
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20160728042324) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "answers", force: :cascade do |t|
     t.integer  "choice_id"
     t.integer  "question_id"
@@ -22,9 +19,9 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.string   "content"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["choice_id"], name: "index_answers_on_choice_id", using: :btree
-    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
-    t.index ["response_id"], name: "index_answers_on_response_id", using: :btree
+    t.index ["choice_id"], name: "index_answers_on_choice_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["response_id"], name: "index_answers_on_response_id"
   end
 
   create_table "choices", force: :cascade do |t|
@@ -32,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.string   "content"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["question_id"], name: "index_choices_on_question_id", using: :btree
+    t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
   create_table "collaborations", force: :cascade do |t|
@@ -41,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.integer  "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_collaborations_on_survey_id", using: :btree
-    t.index ["user_id"], name: "index_collaborations_on_user_id", using: :btree
+    t.index ["survey_id"], name: "index_collaborations_on_survey_id"
+    t.index ["user_id"], name: "index_collaborations_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -51,15 +48,7 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.integer  "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_questions_on_survey_id", using: :btree
-  end
-
-  create_table "resources", force: :cascade do |t|
-    t.integer  "survey_id"
-    t.string   "ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_resources_on_survey_id", using: :btree
+    t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -67,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.string   "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
+    t.index ["survey_id"], name: "index_responses_on_survey_id"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -84,13 +73,4 @@ ActiveRecord::Schema.define(version: 20160728042324) do
     t.boolean  "admin",           default: false
   end
 
-  add_foreign_key "answers", "choices"
-  add_foreign_key "answers", "questions"
-  add_foreign_key "answers", "responses"
-  add_foreign_key "choices", "questions"
-  add_foreign_key "collaborations", "surveys"
-  add_foreign_key "collaborations", "users"
-  add_foreign_key "questions", "surveys"
-  add_foreign_key "resources", "surveys"
-  add_foreign_key "responses", "surveys"
 end
